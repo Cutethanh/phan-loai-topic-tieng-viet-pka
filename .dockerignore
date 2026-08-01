@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+.git/
+.gitignore
+data/
+ket_qua/
+notebook/
+*.md
+.venv/
+venv/

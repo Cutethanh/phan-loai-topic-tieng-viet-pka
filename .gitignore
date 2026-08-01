@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+*.rar
+data/VNTC/
+data/du_lieu_da_tach_tu.csv
+ket_qua/phobert_epoch_1/
+ket_qua/phobert_epoch_2/
+ket_qua/phobert_epoch_3/

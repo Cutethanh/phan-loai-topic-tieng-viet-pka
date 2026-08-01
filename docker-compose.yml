@@ -1,0 +1,24 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: nhom25_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # Gan thu muc models tu may that vao container, de khong phai dung lai anh
+      # moi khi huan luyen lai mo hinh
+      - ./models:/app/models
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: nhom25_frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

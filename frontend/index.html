@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phan loai chu de bai viet tieng Viet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Phân loại chủ đề bài viết tiếng Việt</h1>
+    <p class="phu">Báo cáo cuối kỳ môn Xử lý ngôn ngữ tự nhiên _ Lớp N01 _ Nhóm 25</p>
+  </header>
+
+  <main>
+    <section class="the">
+      <div class="hang-trang-thai">
+        <span id="den" class="den den-cho"></span>
+        <span id="trang-thai">Đang kiểm tra dịch vụ...</span>
+      </div>
+
+      <label for="o-nhap">Dán một đoạn tin tức tiếng Việt vào đây</label>
+      <textarea id="o-nhap" rows="10"
+        placeholder="Ví dụ: Đội tuyển Việt Nam giành chiến thắng trong trận đấu tối qua..."></textarea>
+
+      <div class="hang-nut">
+        <button id="nut-doan">Phân loại</button>
+        <button id="nut-xoa" class="phu-nut">Xóa</button>
+        <select id="chon-mau">
+          <option value="">Chọn một văn bản mẫu</option>
+        </select>
+      </div>
+
+      <div id="ket-qua" class="an"></div>
+      <div id="loi" class="an loi"></div>
+    </section>
+
+    <section class="the">
+      <h2>Về hệ thống này</h2>
+      <p>Mô hình được huấn luyện trên kho ngữ liệu VNTC gồm 10 chủ đề, sau khi đã
+      khử trùng lặp. Văn bản đưa vào sẽ đi qua đúng chuỗi tiền xử lý như lúc huấn
+      luyện, gồm chuẩn hóa Unicode, gộp khoảng trắng và tách từ tiếng Việt.</p>
+      <p class="phu">Độ tin cậy hiển thị bên dưới là xác suất do mô hình Logistic
+      Regression đưa ra. Với bài toán 10 lớp, một giá trị quanh 0,3 đã là khá cao.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Nguyễn Hoàng An _ Hoàng Văn Đô _ Nguyễn Danh Trung Thành</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
