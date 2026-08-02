@@ -1,6 +1,6 @@
 # Phân loại chủ đề bài viết tiếng Việt trên kho ngữ liệu VNTC
 
-Báo cáo cuối kỳ môn Xử lý ngôn ngữ tự nhiên. Mã học phần CSE703065. Lớp N01, nhóm 25.
+Báo cáo cuối kỳ môn Xử lý ngôn ngữ tự nhiên.
 
 Đề tài xây dựng và đối chứng bốn mô hình phân loại chủ đề cho văn bản tin tức
 tiếng Việt, gồm ba mô hình cổ điển trên đặc trưng TF-IDF và một mô hình tinh
@@ -9,7 +9,7 @@ chỉnh PhoBERT, trong cùng một điều kiện thực nghiệm.
 ## 1. Cấu trúc thư mục
 
 ```
-Nhom25_NLP_PhanLoaiChuDe/
+NLP_PhanLoaiChuDe/
     backend/                     dich vu API
         main.py                  ung dung FastAPI, ba diem cuoi
         Dockerfile
