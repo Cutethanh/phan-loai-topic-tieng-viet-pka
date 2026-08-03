@@ -1,6 +1,6 @@
 # Phân loại chủ đề bài viết tiếng Việt trên kho ngữ liệu VNTC
 
-Đề tài xây dựng và đối chứng bốn mô hình phân loại chủ đề cho văn bản tin tức
+Xây dựng và đối chứng bốn mô hình phân loại chủ đề cho văn bản tin tức
 tiếng Việt, gồm ba mô hình cổ điển trên đặc trưng TF-IDF và một mô hình tinh
 chỉnh PhoBERT, trong cùng một điều kiện thực nghiệm.
 
