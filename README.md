@@ -1,46 +1,13 @@
 # Phân loại chủ đề bài viết tiếng Việt trên kho ngữ liệu VNTC
 
-Báo cáo cuối kỳ môn Xử lý ngôn ngữ tự nhiên.
-
 Đề tài xây dựng và đối chứng bốn mô hình phân loại chủ đề cho văn bản tin tức
 tiếng Việt, gồm ba mô hình cổ điển trên đặc trưng TF-IDF và một mô hình tinh
 chỉnh PhoBERT, trong cùng một điều kiện thực nghiệm.
 
-## 1. Cấu trúc thư mục
-
-```
-NLP_PhanLoaiChuDe/
-    backend/                     dich vu API
-        main.py                  ung dung FastAPI, ba diem cuoi
-        Dockerfile
-        requirements.txt
-    frontend/                    giao dien web goi sang API
-        index.html
-        style.css
-        app.js
-        Dockerfile               nginx phuc vu tep tinh
-    models/                      noi luu mo hinh da huan luyen
-    src/                         ma nguon xu ly va huan luyen
-        cau_hinh.py              toan bo tham so gom mot cho
-        tien_xu_ly.py            tai, doc UTF-16, khu trung lap, tach tu
-        dac_trung.py             TF-IDF kem canh bao ro ri du lieu
-        mo_hinh_co_dien.py       Naive Bayes, Logistic Regression, Linear SVM
-        mo_hinh_phobert.py       tinh chinh PhoBERT
-        danh_gia.py              chi so, ma tran nham lan, bang tong hop
-        du_doan.py               nap mo hinh va du doan van ban moi
-    data/                        du lieu tai ve va tep da tach tu
-    ket_qua/                     bieu do, ma tran nham lan, bang so lieu
-    chay.py                      diem khoi chay bang dong lenh
-    docker-compose.yml
-    requirements.txt
-    .dockerignore
-    .gitignore
-    README.md
-```
 
 Có ba cách chạy dự án, trình bày lần lượt ở ba mục dưới.
 
-## 2. Cách một: chạy trực tiếp bằng Python
+## . Cách một: chạy trực tiếp bằng Python
 
 Cần Python 3.9 trở lên.
 
