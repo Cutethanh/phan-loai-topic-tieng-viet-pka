@@ -9,16 +9,9 @@ Có ba cách chạy dự án, trình bày lần lượt ở ba mục dưới.
 
 ## . Cách một: chạy trực tiếp bằng Python
 
-Cần Python 3.9 trở lên.
 
 ```
 pip install -r requirements.txt
-```
-
-Trên Linux hoặc macOS dùng lệnh sau:
-
-```
-sudo apt-get install unar
 ```
 
 Chạy toàn bộ nhánh cổ điển từ đầu tới cuối:
@@ -62,9 +55,6 @@ python -m http.server 8080
 ```
 
 ## 4. Cách ba: chạy bằng Docker
-
-Cần cài Docker Desktop. Vẫn phải huấn luyện mô hình trước để có tệp trong
-`models/`, vì thư mục này được gắn vào container chứ không nằm trong ảnh.
 
 ```
 docker compose up --build
