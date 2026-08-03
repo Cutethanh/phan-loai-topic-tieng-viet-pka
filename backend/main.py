@@ -1,11 +1,3 @@
-"""Dịch vụ API phục vụ dự đoán chủ đề, viết bằng FastAPI.
-
-Chọn FastAPI vì nó tự kiểm tra kiểu dữ liệu đầu vào và tự sinh trang tài liệu
-tương tác tại /docs, rất tiện khi demo.
-
-Chạy khi không dùng Docker, đứng ở thư mục gốc của dự án:
-    uvicorn backend.main:ung_dung --reload --port 8000
-"""
 
 import os
 import sys
