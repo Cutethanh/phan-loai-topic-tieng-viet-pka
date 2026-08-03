@@ -28,8 +28,6 @@ NLP_PhanLoaiChuDe/
         mo_hinh_phobert.py       tinh chinh PhoBERT
         danh_gia.py              chi so, ma tran nham lan, bang tong hop
         du_doan.py               nap mo hinh va du doan van ban moi
-    notebook/
-        Nhom25_NLP_PhanLoaiChuDe.ipynb    ban chay tren Google Colab
     data/                        du lieu tai ve va tep da tach tu
     ket_qua/                     bieu do, ma tran nham lan, bang so lieu
     chay.py                      diem khoi chay bang dong lenh
@@ -55,9 +53,6 @@ Trên Linux hoặc macOS dùng lệnh sau:
 ```
 sudo apt-get install unar
 ```
-
-Trên Windows thì không cần cài gì thêm nếu máy có lệnh tar sẵn có từ Windows 10.
-Nếu không, hãy cài 7-Zip tại 7-zip.org, chương trình sẽ tự nhận ra và dùng.
 
 Chạy toàn bộ nhánh cổ điển từ đầu tới cuối:
 
