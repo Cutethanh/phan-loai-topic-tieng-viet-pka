@@ -36,7 +36,7 @@ class BoPhanLoai:
         self.nhan_lop = goi["nhan_lop"]
 
     def du_doan(self, van_ban, top_k=3):
-        """Nhận văn bản thô, trả về danh sách nhãn kèm độ tin cậy."""
+        top_k = max(1, min(int(top_k), len(self.mo_hinh.classes_)))
         x = self.vectorizer.transform([tien_xu_ly(van_ban)])
         if hasattr(self.mo_hinh, "predict_proba"):
             p = self.mo_hinh.predict_proba(x)[0]
