@@ -1,10 +1,4 @@
-"""Trích xuất đặc trưng bằng TF-IDF.
-
-CẢNH BÁO: không được gọi fit_transform trên toàn bộ dữ liệu rồi mới cắt thành
-train và test. Hàm fit HỌC bộ từ vựng và trọng số idf từ dữ liệu nó nhìn thấy,
-nên nếu nhìn thấy cả tập kiểm thử thì điểm số đo được bị thổi phồng. Đoạn mã sai
-vẫn chạy trơn tru và không báo lỗi, đó là lý do nó nguy hiểm. Cách đúng: chia tập
-trước, fit_transform trên train, chỉ transform trên test.
+"""Trích xuất đặc trưng bằng TF-IDF
 """
 
 import math
