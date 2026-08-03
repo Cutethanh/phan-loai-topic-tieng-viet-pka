@@ -1,8 +1,4 @@
-"""Ba mô hình phân lớp cổ điển trên đặc trưng TF-IDF.
-
-M1 Naive Bayes theo hướng sinh, M2 Logistic Regression theo hướng phân biệt xác
-suất, M3 Linear SVM theo hướng tối đa hóa lề. Dùng cả ba để phép so sánh với
-PhoBERT không bị dễ dãi.
+"""Ba mô hình phân lớp cổ điển trên đặc trưng TF-IDF
 """
 
 import time
