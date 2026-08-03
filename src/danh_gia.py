@@ -1,8 +1,4 @@
-"""Tính các chỉ số đánh giá và vẽ ma trận nhầm lẫn.
-
-Chỉ số CHÍNH là macro-F1 chứ không phải accuracy, vì lớp lớn nhất của bộ dữ liệu
-nhiều gấp gần 4 lần lớp nhỏ nhất. Với dữ liệu lệch như vậy, accuracy bị chi phối
-bởi các lớp lớn và che giấu việc một lớp nhỏ bị làm hỏng.
+"""Tính các chỉ số đánh giá và vẽ ma trận nhầm lẫn
 """
 
 import json
