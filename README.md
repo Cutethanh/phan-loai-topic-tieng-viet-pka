@@ -118,20 +118,6 @@ Sau khi khởi động xong, truy cập:
 
 Dừng lại bằng tổ hợp phím Ctrl và C, hoặc bằng lệnh `docker compose down`.
 
-## 5. Các điểm cuối của API
-
-| Điểm cuối | Phương thức | Đầu vào | Đầu ra |
-|---|---|---|---|
-| /health | GET | không | Trạng thái dịch vụ và danh sách lớp |
-| /predict | POST | một chuỗi văn bản | Nhãn chủ đề kèm độ tin cậy |
-| /predict_batch | POST | danh sách chuỗi văn bản | Danh sách kết quả tương ứng |
-
-Ví dụ gọi bằng curl:
-
-```
-curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" -d "{\\"van_ban\\": \\"Doi tuyen Viet Nam gianh chien thang 2-0\\", \\"top_k\\": 3}"
-```
-
 ## 6. Kết quả đã đo được
 
 Chạy trên toàn bộ dữ liệu sau khi khử trùng lặp, tập kiểm thử 46.788 văn bản:
