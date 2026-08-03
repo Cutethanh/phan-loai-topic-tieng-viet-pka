@@ -1,15 +1,4 @@
-"""Tinh chỉnh PhoBERT cho bài toán phân loại chủ đề.
-
-LƯU Ý: mô đun này chưa được chạy thử vì máy soạn mã nguồn không có GPU. Code
-viết theo tài liệu chính thức của transformers và PhoBERT.
-
-Ba điểm kỹ thuật: PhoBERT giới hạn cứng 256 token con nên phần lớn văn bản bị
-cắt; batch 16 kèm gộp đạo hàm 2 cho batch hiệu dụng 32 để vừa GPU 8 GB; mô hình
-được lưu sau mỗi epoch để đứt phiên không mất trắng.
-
-Card dòng RTX 50 dùng kiến trúc Blackwell (sm_120). Bản PyTorch theo CUDA 12.1
-hoặc 12.4 không có nhân cho kiến trúc này: hàm kiểm tra vẫn báo thấy GPU nhưng
-chạy thật thì lỗi. Cài lại theo CUDA 12.8 trở lên nếu gặp.
+"""Tinh chỉnh PhoBERT cho bài toán phân loại chủ đề
 """
 
 import math
