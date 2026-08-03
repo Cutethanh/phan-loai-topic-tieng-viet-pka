@@ -43,12 +43,12 @@ def lay_bo_phan_loai():
 
 class YeuCauMot(BaseModel):
     van_ban: str
-    top_k: int = 3
+    top_k: int = Field(3, ge=1, le=10, description="So nhan tra ve, tu 1 toi 10")
 
 
 class YeuCauNhieu(BaseModel):
     danh_sach: List[str]
-    top_k: int = 3
+    top_k: int = Field(3, ge=1, le=10, description="So nhan tra ve, tu 1 toi 10")
 
 
 @ung_dung.get("/")
