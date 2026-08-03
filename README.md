@@ -94,11 +94,6 @@ cd frontend
 python -m http.server 8080
 ```
 
-Sau đó mở trình duyệt vào `http://127.0.0.1:8080` để dùng giao diện, hoặc vào
-`http://127.0.0.1:8000/docs` để dùng trang tài liệu API tương tác. Trang tài liệu
-này do FastAPI tự sinh, rất tiện khi demo trước hội đồng vì gõ thẳng văn bản vào
-là thấy kết quả ngay.
-
 ## 4. Cách ba: chạy bằng Docker
 
 Cần cài Docker Desktop. Vẫn phải huấn luyện mô hình trước để có tệp trong
