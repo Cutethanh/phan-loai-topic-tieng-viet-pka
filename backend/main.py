@@ -84,8 +84,9 @@ def du_doan_mot(yc: YeuCauMot):
 @ung_dung.post("/predict_batch")
 def du_doan_nhieu(yc: YeuCauNhieu):
     """Dự đoán chủ đề cho nhiều văn bản trong một lần gọi."""
-    if not yc.danh_sach:
-        raise HTTPException(status_code=400, detail="Danh sách rỗng")
+    if any(not vb.strip() for vb in yc.danh_sach):
+        raise HTTPException(status_code=400,
+                            detail="Danh sách chứa văn bản rỗng")
     try:
         bpl = lay_bo_phan_loai()
     except FileNotFoundError as e:
