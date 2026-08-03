@@ -164,26 +164,3 @@ Trước khi chạy, cài thêm:
 pip install torch transformers
 pip install --force-reinstall torch --index-url https://download.pytorch.org/whl/cu128
 ```
-
-## 7. Nguồn dữ liệu và tài liệu tham khảo
-
-Kho ngữ liệu VNTC phiên bản 10Topics Ver1.1 tại https://github.com/duyvuleo/VNTC
-
-Hoang, C.D.V., Dinh, D., Nguyen, N.L., Ngo, Q.H. (2007). A Comparative Study on
-Vietnamese Text Classification Methods. IEEE RIVF 2007, trang 267 tới 273.
-https://ieeexplore.ieee.org/document/4223084/
-
-Nguyen, D.Q., Nguyen, A.T. (2020). PhoBERT: Pre-trained language models for
-Vietnamese. Findings of EMNLP 2020, trang 1037 tới 1042.
-https://aclanthology.org/2020.findings-emnlp.92.pdf
-
-Nguyen, D.-V., Nguyen, N.L.-T. (2023). Is word segmentation necessary for
-Vietnamese sentiment classification. https://arxiv.org/abs/2301.00418
-
-## 8. Thành viên nhóm
-
-| Họ và tên | Mã sinh viên |
-|---|---|
-| Nguyễn Hoàng An | 24100126 |
-| Hoàng Văn Đô | 24107948 |
-| Nguyễn Danh Trung Thành | 24100505 |
