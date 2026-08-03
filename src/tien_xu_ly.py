@@ -1,9 +1,4 @@
-"""Tải dữ liệu, đọc tệp, khử trùng lặp và tách từ tiếng Việt.
-
-Hai điểm dễ sai nhất của đề tài đều nằm ở đây. Một là bảng mã: các tệp VNTC lưu
-bằng UTF-16 có BOM, mở bằng UTF-8 mặc định sẽ ra ký tự rác. Hai là trùng lặp:
-bản chia chuẩn có một phần văn bản xuất hiện ở cả hai tập, không xử lý thì mô
-hình được chấm điểm trên chính những bài nó đã nhìn thấy.
+"""Tải dữ liệu, đọc tệp, khử trùng lặp và tách từ tiếng Việt
 """
 
 import collections
@@ -19,8 +14,6 @@ import pandas as pd
 
 from . import cau_hinh as ch
 
-# Bẫy: TT vừa là mã chủ đề Thể thao vừa là mã báo Tuổi Trẻ, nên phải lấy đúng
-# token thứ hai chứ không được tìm chuỗi bừa bãi
 MAU_TEN_TEP = re.compile(r"^([A-Za-z]+)_\s*([A-Za-z]+)_")
 
 
@@ -28,8 +21,7 @@ def ghi(msg):
     print("[" + time.strftime("%H:%M:%S") + "] " + str(msg), flush=True)
 
 
-# ------------------------- TẢI DỮ LIỆU -------------------------
-
+# TẢI DỮ LIỆU
 def tai_du_lieu():
     """Tải kho ngữ liệu từ GitHub và giải nén."""
     ch.bao_dam_thu_muc()
@@ -80,7 +72,7 @@ def giai_nen_rar(tep_rar, thu_muc_ra):
         "kéo thư mục con ra ngoài một cấp.")
 
 
-# ------------------------- ĐỌC VÀ CHUẨN HÓA -------------------------
+# ĐỌC VÀ CHUẨN HÓA
 
 def doc_mot_tep(duong_dan):
     """Đọc một tệp văn bản của VNTC và trả về chuỗi đã chuẩn hóa."""
@@ -130,8 +122,7 @@ def quet_toan_bo():
     return ban_ghi
 
 
-# ------------------------- KHỬ TRÙNG LẶP -------------------------
-
+# KHỬ TRÙNG LẶP
 def khu_trung_lap(ban_ghi):
     """Khử trùng lặp bằng hàm băm trên nội dung đã chuẩn hóa.
 
@@ -184,7 +175,7 @@ def khu_trung_lap(ban_ghi):
     return con_lai, thong_ke
 
 
-# ------------------------- TÁCH TỪ -------------------------
+# TÁCH TỪ
 
 _bo_tach_tu = None
 
@@ -224,7 +215,7 @@ def tach_tu_hang_loat(ban_ghi):
     return ban_ghi
 
 
-# ------------------------- ĐIỀU PHỐI -------------------------
+# ĐIỀU PHỐI
 
 def chuan_bi_du_lieu(mau_thu=False, so_mau_moi_lop=300, bat_buoc_lam_lai=False):
     """Chạy toàn bộ giai đoạn 1 và trả về khung dữ liệu đã tách từ.
