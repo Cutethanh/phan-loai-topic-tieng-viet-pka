@@ -50,8 +50,7 @@ Cần Python 3.9 trở lên.
 pip install -r requirements.txt
 ```
 
-Ngoài ra cần công cụ giải nén tệp .rar vì bộ dữ liệu được nén ở định dạng này
-chứ không phải .zip. Trên Linux hoặc macOS dùng lệnh sau:
+Trên Linux hoặc macOS dùng lệnh sau:
 
 ```
 sudo apt-get install unar
