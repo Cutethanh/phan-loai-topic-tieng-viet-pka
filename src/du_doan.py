@@ -1,11 +1,4 @@
-"""Nạp mô hình đã huấn luyện và dự đoán chủ đề cho văn bản mới.
-
-Hai điểm phải làm đúng khi triển khai:
-
-1. Nạp lại đúng vectorizer ĐÃ FIT lúc huấn luyện, tuyệt đối không fit lại trên
-   dữ liệu người dùng, nếu không mô hình nhận vào một không gian đặc trưng xa lạ.
-2. Văn bản phải đi qua đúng chuỗi tiền xử lý như lúc huấn luyện. Vì vậy hàm
-   tien_xu_ly được viết một lần và gọi ở cả hai nơi.
+"""Nạp mô hình đã huấn luyện và dự đoán chủ đề cho văn bản mới
 """
 
 import os
