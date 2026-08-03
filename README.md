@@ -113,7 +113,7 @@ Sau khi khởi động xong, truy cập:
 
 Dừng lại bằng tổ hợp phím Ctrl và C, hoặc bằng lệnh `docker compose down`.
 
-## 6. Kết quả đã đo được
+## 5. Kết quả đã đo được
 
 Chạy trên toàn bộ dữ liệu sau khi khử trùng lặp, tập kiểm thử 46.788 văn bản:
 
@@ -139,7 +139,7 @@ ngang nhau. Hai là Linear SVM huấn luyện nhanh hơn Logistic Regression kho
 nhất sang Văn hóa và Chính trị Xã hội, điều này hợp lý vì ranh giới ba chuyên mục
 đó vốn mờ ngay cả với người biên tập.
 
-## 6b. Chạy PhoBERT nhiều lần
+## 5b. Chạy PhoBERT nhiều lần
 
 PhoBERT không tất định: hai lần chạy cùng cấu hình, cùng dữ liệu, cùng hạt giống
 vẫn cho kết quả khác nhau. Nguyên nhân là thứ tự trộn dữ liệu mỗi epoch, tính
@@ -157,56 +157,15 @@ python chay.py --buoc phobert
 python chay.py --buoc tong_hop
 ```
 
-Bảng tổng hợp sẽ có thêm mục B2 in ra trung bình kèm độ lệch chuẩn của các lần
-chạy. Đây mới là con số nên đưa vào báo cáo cho PhoBERT, thay vì lấy kết quả của
-một lần chạy đơn lẻ.
-
-## 7. Về nhánh PhoBERT
-
-Mô đun `src/mo_hinh_phobert.py` chưa được chạy thử trong quá trình viết mã, vì
-máy dùng để soạn mã nguồn không có GPU. Code được viết theo tài liệu chính thức
-của thư viện transformers và của PhoBERT.
-
+## 6. Về nhánh PhoBERT
 Trước khi chạy, cài thêm:
 
 ```
 pip install torch transformers
-```
-
-Lưu ý riêng cho card dòng RTX 50: các card này dùng kiến trúc Blackwell với
-compute capability sm_120. Những bản PyTorch dựng theo CUDA 12.1 hoặc 12.4 không
-chứa nhân biên dịch cho kiến trúc này. Triệu chứng dễ gây hiểu nhầm là hàm
-`torch.cuda.is_available` vẫn trả về True, nhưng tới lúc chạy thật thì báo lỗi
-không tìm thấy nhân thực thi. Cách sửa:
-
-```
 pip install --force-reinstall torch --index-url https://download.pytorch.org/whl/cu128
 ```
 
-Lệnh `python chay.py --buoc phobert` tự kiểm tra môi trường GPU bằng một phép
-nhân ma trận nhỏ trước khi bắt đầu huấn luyện, và dừng lại nếu phát hiện vấn đề.
-
-Nếu báo lỗi hết bộ nhớ GPU, sửa trong `src/cau_hinh.py`: hạ `batch_size` từ 16
-xuống 8 và tăng `gop_dao_ham` từ 2 lên 4, khi đó batch hiệu dụng vẫn là 32.
-
-## 8. Ba điểm kỹ thuật đáng chú ý
-
-Bảng mã. Các tệp của VNTC lưu bằng UTF-16 Little Endian có BOM, xuống dòng kiểu
-CRLF. Mở bằng encoding mặc định là UTF-8 sẽ ra ký tự rác hoặc báo lỗi. Xem hàm
-`doc_mot_tep` trong `src/tien_xu_ly.py`.
-
-Trùng lặp dữ liệu. Bản chia chuẩn của bộ dữ liệu có 2.399 nội dung xuất hiện ở cả
-tập huấn luyện lẫn tập kiểm thử, cùng 378 nhóm văn bản giống hệt nhau nhưng bị
-gán hai nhãn khác nhau. Không xử lý thì mô hình được chấm điểm trên chính những
-văn bản nó đã nhìn thấy. Sau khi lọc, dữ liệu còn 80.332 văn bản gồm 33.544 huấn
-luyện và 46.788 kiểm thử. Xem hàm `khu_trung_lap` trong `src/tien_xu_ly.py`.
-
-Rò rỉ khi tính TF-IDF. Gọi `fit_transform` trên toàn bộ dữ liệu rồi mới cắt ra
-thành train và test là lỗi nghiêm trọng, vì hàm `fit` học bộ từ vựng và trọng số
-idf từ dữ liệu nó nhìn thấy. Đoạn mã sai chạy trơn tru và không báo lỗi gì, đó là
-lý do nó nguy hiểm. Xem chú thích đầu tệp `src/dac_trung.py`.
-
-## 9. Nguồn dữ liệu và tài liệu tham khảo
+## 7. Nguồn dữ liệu và tài liệu tham khảo
 
 Kho ngữ liệu VNTC phiên bản 10Topics Ver1.1 tại https://github.com/duyvuleo/VNTC
 
@@ -221,7 +180,7 @@ https://aclanthology.org/2020.findings-emnlp.92.pdf
 Nguyen, D.-V., Nguyen, N.L.-T. (2023). Is word segmentation necessary for
 Vietnamese sentiment classification. https://arxiv.org/abs/2301.00418
 
-## 10. Thành viên nhóm
+## 8. Thành viên nhóm
 
 | Họ và tên | Mã sinh viên |
 |---|---|
