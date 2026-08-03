@@ -1,8 +1,6 @@
-"""Toàn bộ tham số của đề tài, gom về một chỗ để dễ chỉnh và dễ đối chiếu."""
-
 import os
 
-# ------------------------- ĐƯỜNG DẪN -------------------------
+#ĐƯỜNG DẪN
 
 THU_MUC_GOC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 THU_MUC_DU_LIEU = os.path.join(THU_MUC_GOC, "data")
@@ -21,7 +19,7 @@ URL_KHO = "https://github.com/duyvuleo/VNTC.git"
 # Cố định để mọi lần chạy cho cùng kết quả
 HAT_GIONG = 42
 
-# ------------------------- NHÃN LỚP -------------------------
+#NHÃN LỚP
 
 # Tên thư mục trong bộ dữ liệu là không dấu nên phải ánh xạ sang tên có dấu
 TEN_HIEN_THI = {
@@ -45,7 +43,7 @@ MA_TOA_SOAN = {
     "NLD": "Người Lao Động",
 }
 
-# ------------------------- THAM SỐ MÔ HÌNH -------------------------
+# THAM SỐ MÔ HÌNH
 
 THAM_SO_TFIDF = {
     "ngram_range": (1, 2),    # bigram bù cho những từ ghép pyvi tách chưa chuẩn
