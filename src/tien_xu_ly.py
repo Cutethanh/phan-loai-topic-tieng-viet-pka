@@ -62,14 +62,7 @@ def giai_nen_rar(tep_rar, thu_muc_ra):
             ghi("   giải nén bằng " + lenh[0])
             return True
 
-    raise RuntimeError(
-        "Không giải nén được " + tep_rar + "\n"
-        "Cách xử lý:\n"
-        "   Linux hoặc macOS: sudo apt-get install unar\n"
-        "   Windows: cài 7-Zip tại 7-zip.org, hoặc giải nén thủ công vào\n"
-        "   " + thu_muc_ra + " sao cho có hai thư mục Train_Full và Test_Full.\n"
-        "Lưu ý một số công cụ tạo thêm một lớp thư mục trùng tên, khi đó phải\n"
-        "kéo thư mục con ra ngoài một cấp.")
+    raise RuntimeError
 
 
 # ĐỌC VÀ CHUẨN HÓA
@@ -124,15 +117,7 @@ def quet_toan_bo():
 
 # KHỬ TRÙNG LẶP
 def khu_trung_lap(ban_ghi):
-    """Khử trùng lặp bằng hàm băm trên nội dung đã chuẩn hóa.
-
-    Quy tắc: nhóm nội dung giống hệt nhau nhưng bị gán hai nhãn khác nhau thì bỏ
-    cả nhóm vì không biết nhãn nào đúng; nhóm trùng cùng nhãn thì giữ một bản,
-    ưu tiên bản ở tập train để bản sao bên test bị loại.
-
-    Cách này bỏ sót bản gần trùng, đổi lại không có tham số nào cần chọn tùy ý
-    nên kết quả tái lập được chính xác.
-    """
+    
     nhom = collections.defaultdict(list)
     for i, r in enumerate(ban_ghi):
         nhom[r["bam"]].append(i)
