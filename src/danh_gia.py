@@ -14,8 +14,6 @@ from . import cau_hinh as ch
 
 
 def khoang_wilson(so_dung, tong, z=None):
-    """Khoảng tin cậy Wilson cho tỷ lệ, ổn định hơn công thức chuẩn thông
-    thường khi tỷ lệ gần 0 hoặc gần 1, và khi số mẫu nhỏ."""
     if z is None:
         z = ch.MUC_TIN_CAY
     if tong == 0:
@@ -25,7 +23,6 @@ def khoang_wilson(so_dung, tong, z=None):
     tam = p + z * z / (2 * tong)
     lech = z * math.sqrt(p * (1 - p) / tong + z * z / (4 * tong * tong))
     return ((tam - lech) / mau_so, (tam + lech) / mau_so)
-
 
 def do_ket_qua(ten_mo_hinh, y_that, y_doan, giay=None, in_ra=True):
     acc = accuracy_score(y_that, y_doan)
@@ -51,15 +48,12 @@ def do_ket_qua(ten_mo_hinh, y_that, y_doan, giay=None, in_ra=True):
         print()
     return r
 
-
 def bao_cao_tung_lop(y_that, y_doan, nhan_lop):
     print("BÁO CÁO CHI TIẾT TỪNG LỚP")
     print(classification_report(y_that, y_doan, target_names=nhan_lop,
                                 digits=4, zero_division=0))
 
-
 def ve_ma_tran_nham_lan(y_that, y_doan, nhan_lop, ten_mo_hinh, luu_hinh=True):
-    """Vẽ và lưu ma trận nhầm lẫn, đồng thời in ra các cặp bị nhầm nhiều nhất."""
     import matplotlib
     if luu_hinh:
         matplotlib.use("Agg")
@@ -104,7 +98,6 @@ def ve_ma_tran_nham_lan(y_that, y_doan, nhan_lop, ten_mo_hinh, luu_hinh=True):
     print()
     return cm
 
-
 def ve_phan_bo_nhan(df):
     import matplotlib
     matplotlib.use("Agg")
@@ -138,7 +131,6 @@ def ve_phan_bo_nhan(df):
 
 
 def luu_ket_qua(ten_mo_hinh, ket_qua, khoa="ket_qua_test"):
-    """Gộp vào tệp kết quả chung để chạy nhiều lượt vẫn ra một bảng đủ."""
     tat_ca = {}
     if os.path.exists(ch.TEP_KET_QUA):
         with open(ch.TEP_KET_QUA, encoding="utf-8") as f:
@@ -147,13 +139,7 @@ def luu_ket_qua(ten_mo_hinh, ket_qua, khoa="ket_qua_test"):
     with open(ch.TEP_KET_QUA, "w", encoding="utf-8") as f:
         json.dump(tat_ca, f, ensure_ascii=False, indent=1)
 
-
 def khoa_lan_chay_moi(ten_goc, khoa="ket_qua_test"):
-    """Sinh khóa cho một lần chạy mới, dạng ten_goc_lan1, ten_goc_lan2 ...
-
-    Cần cho PhoBERT vì mô hình này không tất định, ghi đè thì chỉ giữ được lần
-    chạy gần nhất. Ba mô hình cổ điển tất định nên vẫn ghi đè bình thường.
-    """
     tat_ca = doc_ket_qua().get(khoa, {})
     n = 1
     while ten_goc + "_lan" + str(n) in tat_ca:
@@ -162,7 +148,6 @@ def khoa_lan_chay_moi(ten_goc, khoa="ket_qua_test"):
 
 
 def gom_cac_lan_chay(kq):
-    """Gom các khóa dạng ten_goc_lanN lại và tính trung bình kèm độ lệch chuẩn."""
     nhom = {}
     for ten, r in kq.items():
         if "_lan" in ten:
@@ -180,7 +165,6 @@ def gom_cac_lan_chay(kq):
             "f1_lech": round(float(np.std([d["macro_f1"] for d in ds], ddof=1)), 4),
         }
     return tong_hop
-
 
 def doc_ket_qua():
     if not os.path.exists(ch.TEP_KET_QUA):
