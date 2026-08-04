@@ -23,7 +23,6 @@ def ghi(msg):
 
 # TẢI DỮ LIỆU
 def tai_du_lieu():
-    """Tải kho ngữ liệu từ GitHub và giải nén."""
     ch.bao_dam_thu_muc()
     thu_muc_kho = os.path.join(ch.THU_MUC_DU_LIEU, "VNTC")
 
@@ -45,11 +44,9 @@ def tai_du_lieu():
 
 
 def giai_nen_rar(tep_rar, thu_muc_ra):
-    """Giải nén tệp .rar, thử lần lượt nhiều công cụ để chạy được trên nhiều hệ
-    điều hành. Định dạng .rar là độc quyền nên Python không có thư viện thuần."""
     cac_lenh = [
         ["unar", "-q", "-o", thu_muc_ra, tep_rar],   # Linux, macOS
-        ["tar", "-xf", tep_rar, "-C", thu_muc_ra],   # Windows 10 trở lên
+        ["tar", "-xf", tep_rar, "-C", thu_muc_ra],   # Windows 10
         ["7z", "x", "-y", "-o" + thu_muc_ra, tep_rar],
         ["bsdtar", "-xf", tep_rar, "-C", thu_muc_ra],
     ]
@@ -66,14 +63,11 @@ def giai_nen_rar(tep_rar, thu_muc_ra):
 
 
 # ĐỌC VÀ CHUẨN HÓA
-
 def doc_mot_tep(duong_dan):
     """Đọc một tệp văn bản của VNTC và trả về chuỗi đã chuẩn hóa."""
     with open(duong_dan, "rb") as f:
         raw = f.read()
-    # Bắt buộc utf-16, không được để encoding mặc định
     van_ban = raw.decode("utf-16", errors="replace")
-    # NFC để cùng một chữ không sinh ra hai đặc trưng khác nhau
     van_ban = unicodedata.normalize("NFC", van_ban)
     return " ".join(van_ban.split())
 
@@ -174,11 +168,6 @@ def _nap_bo_tach_tu():
 
 
 def tien_xu_ly(van_ban):
-    """Chuỗi tiền xử lý dùng chung cho cả lúc huấn luyện và lúc dự đoán.
-
-    Viết một lần và gọi ở cả hai nơi là bắt buộc: nếu lúc triển khai bỏ sót bước
-    tách từ thì độ chính xác sụt mạnh mà không có thông báo lỗi nào.
-    """
     tok = _nap_bo_tach_tu()
     van_ban = unicodedata.normalize("NFC", van_ban)
     van_ban = " ".join(van_ban.split())
@@ -203,10 +192,6 @@ def tach_tu_hang_loat(ban_ghi):
 # ĐIỀU PHỐI
 
 def chuan_bi_du_lieu(mau_thu=False, so_mau_moi_lop=300, bat_buoc_lam_lai=False):
-    """Chạy toàn bộ giai đoạn 1 và trả về khung dữ liệu đã tách từ.
-
-    Nếu đã có tệp đã tách từ từ lần chạy trước thì đọc lại, bỏ qua tải và tách từ.
-    """
     ch.bao_dam_thu_muc()
 
     tep_cache = ch.tep_da_tach_tu(mau_thu, so_mau_moi_lop)
@@ -260,8 +245,6 @@ def chuan_bi_du_lieu(mau_thu=False, so_mau_moi_lop=300, bat_buoc_lam_lai=False):
 
 
 def chia_tap(df):
-    """Dùng bản chia chuẩn có sẵn của VNTC để báo cáo đối chiếu được với các
-    nghiên cứu khác, nên không gọi train_test_split."""
     tr = df[df["tap"] == "train"].reset_index(drop=True)
     te = df[df["tap"] == "test"].reset_index(drop=True)
     nhan_lop = sorted(tr["chu_de"].unique())
