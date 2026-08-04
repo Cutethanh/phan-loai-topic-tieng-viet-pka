@@ -209,9 +209,14 @@ def chuan_bi_du_lieu(mau_thu=False, so_mau_moi_lop=300, bat_buoc_lam_lai=False):
     """
     ch.bao_dam_thu_muc()
 
-    if os.path.exists(ch.TEP_DA_TACH_TU) and not bat_buoc_lam_lai:
-        ghi("Đọc lại dữ liệu đã tách từ từ " + ch.TEP_DA_TACH_TU)
-        df = pd.read_csv(ch.TEP_DA_TACH_TU).dropna(subset=["van_ban_tach_tu"])
+    tep_cache = ch.tep_da_tach_tu(mau_thu, so_mau_moi_lop)
+    che_do = ("CHẠY THỬ, " + str(so_mau_moi_lop) + " văn bản mỗi lớp mỗi tập"
+              if mau_thu else "ĐẦY ĐỦ, toàn bộ dữ liệu")
+    ghi("Chế độ: " + che_do)
+
+    if os.path.exists(tep_cache) and not bat_buoc_lam_lai:
+        ghi("Đọc lại dữ liệu đã tách từ từ " + os.path.basename(tep_cache))
+        df = pd.read_csv(tep_cache).dropna(subset=["van_ban_tach_tu"])
         ghi("Có " + str(len(df)) + " văn bản")
         return df
 
