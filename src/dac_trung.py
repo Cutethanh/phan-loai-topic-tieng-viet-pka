@@ -3,41 +3,24 @@
 
 import math
 import time
-
 from sklearn.feature_extraction.text import TfidfVectorizer
-
 from . import cau_hinh as ch
-
 
 def tao_vectorizer():
     return TfidfVectorizer(**ch.THAM_SO_TFIDF)
 
-
 def xay_dung_dac_trung(tr, te):
-    """Trả về ma trận đặc trưng của hai tập cùng vectorizer đã fit.
-
-    Thứ tự hai bước dưới đây là bắt buộc và không được đảo.
-    """
     vec = tao_vectorizer()
     t0 = time.time()
-
-    # tolist() vì từ pandas 3.x cột chuỗi dùng ArrowStringArray, không tương
-    # thích hoàn toàn với cách scikit-learn lấy phần tử bằng mảng chỉ số
     X_train = vec.fit_transform(tr["van_ban_tach_tu"].tolist())
     X_test = vec.transform(te["van_ban_tach_tu"].tolist())
-
     print("TF-IDF xong sau", round(time.time() - t0, 1), "giây")
     print("   Kích thước ma trận train:", X_train.shape)
     print("   Kích thước ma trận test :", X_test.shape)
     print("   Số đặc trưng học được từ tập train:", len(vec.vocabulary_))
     return X_train, X_test, vec
 
-
 def minh_hoa_ro_ri():
-    """In ví dụ số cho thấy chênh lệch giữa cách làm đúng và cách làm sai.
-
-    Chỉ dùng để minh họa trong báo cáo, không tham gia quá trình huấn luyện.
-    """
     def idf(N, df_t):
         return math.log((1 + N) / (1 + df_t)) + 1
 
