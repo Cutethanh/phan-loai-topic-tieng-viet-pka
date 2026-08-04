@@ -149,6 +149,15 @@ def main():
     a = p.parse_args()
 
     ch.bao_dam_thu_muc()
+    if a.mau_thu:
+        ch.THU_MUC_KET_QUA = os.path.join(ch.THU_MUC_KET_QUA, "mau_thu")
+        ch.TEP_THONG_KE = os.path.join(ch.THU_MUC_KET_QUA, "thong_ke_du_lieu.json")
+        ch.TEP_KET_QUA = os.path.join(ch.THU_MUC_KET_QUA, "ket_qua.json")
+        ch.TEP_MO_HINH = os.path.join(ch.THU_MUC_MO_HINH,
+                                      "mo_hinh_phan_loai_mau_thu.joblib")
+        os.makedirs(ch.THU_MUC_KET_QUA, exist_ok=True)
+        print("CHẾ ĐỘ CHẠY THỬ: mọi kết quả ghi vào", ch.THU_MUC_KET_QUA)
+        print()
 
     if a.buoc == "tat_ca":
         print("### BƯỚC 1: CHUẨN BỊ DỮ LIỆU ###")
