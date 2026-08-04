@@ -1,7 +1,5 @@
-"""Điểm khởi chạy của toàn bộ dự án.
-
+"""
 Cách dùng:
-
     python chay.py --buoc chuan_bi     Tải dữ liệu, khử trùng lặp, tách từ
     python chay.py --buoc thong_ke     In bảng thống kê mô tả và vẽ biểu đồ
     python chay.py --buoc co_dien      Huấn luyện và đánh giá ba mô hình cổ điển
@@ -10,9 +8,7 @@ Cách dùng:
     python chay.py --buoc du_doan      Thử dự đoán trên vài văn bản mẫu
     python chay.py --buoc tong_hop     In bảng tổng hợp kết quả
     python chay.py --buoc tat_ca       Chạy toàn bộ nhánh cổ điển từ đầu tới cuối
-
 Tùy chọn thêm:
-
     --mau_thu              Chỉ dùng 300 văn bản mỗi lớp, để chạy thử cho nhanh
     --cat head_tail        Đổi cách cắt văn bản cho PhoBERT
     --lam_lai              Bỏ qua tệp đã tách từ và làm lại từ đầu
@@ -79,10 +75,6 @@ def buoc_co_dien(a):
     print()
 
     X_train, X_test, vec = dac_trung.xay_dung_dac_trung(tr, te)
-    # .tolist() thay vi .values: tu pandas 3.x, cot chuoi duoc luu bang
-    # ArrowStringArray thay vi mang numpy. Kieu nay khong ho tro day du
-    # cach lay phan tu bang mang chi so ma scikit-learn dung ben trong,
-    # nen chuyen ve list Python thuan cho chac chan.
     y_train, y_test = tr["chu_de"].tolist(), te["chu_de"].tolist()
     print()
 
@@ -95,8 +87,6 @@ def buoc_co_dien(a):
     dg.bao_cao_tung_lop(y_test, du_doan_luu[tot], nhan_lop)
     dg.ve_ma_tran_nham_lan(y_test, du_doan_luu[tot], nhan_lop, tot)
 
-    # Lưu Logistic Regression để triển khai, vì mô hình này cho xác suất thật sự.
-    # LinearSVC chỉ cho khoảng cách tới mặt phân chia, không phải xác suất.
     du_doan.luu_mo_hinh(vec, mo_hinh_luu["M2_LogisticRegression"])
     return y_test, du_doan_luu, nhan_lop
 
