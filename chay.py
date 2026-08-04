@@ -37,7 +37,7 @@ def buoc_chuan_bi(a):
 
 
 def buoc_thong_ke(a):
-    df = tien_xu_ly.chuan_bi_du_lieu(mau_thu=a.mau_thu)
+    df = tien_xu_ly.chuan_bi_du_lieu(mau_thu=a.mau_thu, bat_buoc_lam_lai=a.lam_lai)
     bang = dg.ve_phan_bo_nhan(df)
     print()
     print("BẢNG THỐNG KÊ MÔ TẢ THEO CHỦ ĐỀ")
@@ -70,7 +70,7 @@ def buoc_thong_ke(a):
 
 
 def buoc_co_dien(a):
-    df = tien_xu_ly.chuan_bi_du_lieu(mau_thu=a.mau_thu)
+    df = tien_xu_ly.chuan_bi_du_lieu(mau_thu=a.mau_thu, bat_buoc_lam_lai=a.lam_lai)
     tr, te, nhan_lop = tien_xu_ly.chia_tap(df)
 
     print()
@@ -101,7 +101,7 @@ def buoc_co_dien(a):
 
 
 def buoc_kiem_dinh(a):
-    df = tien_xu_ly.chuan_bi_du_lieu(mau_thu=a.mau_thu)
+    df = tien_xu_ly.chuan_bi_du_lieu(mau_thu=a.mau_thu, bat_buoc_lam_lai=a.lam_lai)
     tr, _, _ = tien_xu_ly.chia_tap(df)
     print()
     print("Kiểm định chéo", ch.SO_LOP_GAP, "lớp trên tập huấn luyện")
@@ -120,7 +120,7 @@ def buoc_phobert(a):
         print("Môi trường GPU chưa sẵn sàng. Dừng ở đây.")
         return
     print()
-    df = tien_xu_ly.chuan_bi_du_lieu(mau_thu=a.mau_thu)
+    df = tien_xu_ly.chuan_bi_du_lieu(mau_thu=a.mau_thu, bat_buoc_lam_lai=a.lam_lai)
     tr, te, nhan_lop = tien_xu_ly.chia_tap(df)
     mo_hinh_phobert.tinh_chinh(tr, te, nhan_lop, kieu_cat=a.cat)
 
