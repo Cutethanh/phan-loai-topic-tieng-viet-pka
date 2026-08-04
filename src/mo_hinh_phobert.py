@@ -12,8 +12,6 @@ from . import danh_gia as dg
 
 
 def kiem_tra_thu_vien():
-    """Kiểm tra torch và transformers đã cài chưa, báo lỗi rõ ràng thay vì để
-    Python ném ModuleNotFoundError ở giữa quá trình chạy."""
     thieu = []
     try:
         import torch  # noqa: F401
@@ -34,7 +32,6 @@ def kiem_tra_thu_vien():
         print("   pip install --force-reinstall torch --index-url https://download.pytorch.org/whl/cu128")
         return False
     return True
-
 
 def kiem_tra_gpu():
     """Kiểm tra môi trường GPU và cảnh báo các vấn đề đã biết."""
@@ -78,7 +75,6 @@ def kiem_tra_gpu():
         print("Với VRAM dưới 9 GB, nên giữ batch_size = 16 hoặc hạ xuống 8.")
     return True
 
-
 def do_token_con_tren_tu(tokenizer, tr, so_mau=2000):
     """Đo số token con trung bình trên một từ, quyết định thực tế giữ lại được
     bao nhiêu từ trong giới hạn 256 token con."""
@@ -98,13 +94,7 @@ def do_token_con_tren_tu(tokenizer, tr, so_mau=2000):
     print("   Trong khi độ dài trung vị của văn bản là 361 từ.")
     return r
 
-
 def cat_chuoi(ids, kieu, id_dau, id_cuoi):
-    """head lấy phần đầu, head_tail lấy nửa đầu cộng nửa cuối.
-
-    Chủ đề tin tức thường bộc lộ ngay ở đoạn dẫn nên head là cấu hình chính,
-    head_tail là thí nghiệm phụ theo khuyến nghị của Sun và cộng sự (2019).
-    """
     con = ch.PHOBERT["do_dai_toi_da"] - 2
     if len(ids) <= con:
         giu = ids
@@ -119,7 +109,6 @@ def cat_chuoi(ids, kieu, id_dau, id_cuoi):
 def ma_hoa(khung, tokenizer, nhan_to_so, kieu):
     import torch
     from torch.utils.data import TensorDataset
-
     n = len(khung)
     L = ch.PHOBERT["do_dai_toi_da"]
     id_dem = tokenizer.pad_token_id
@@ -136,7 +125,6 @@ def ma_hoa(khung, tokenizer, nhan_to_so, kieu):
             moc += 10000
     y = np.array([nhan_to_so[c] for c in khung["chu_de"].tolist()], dtype=np.int64)
     return TensorDataset(torch.tensor(X), torch.tensor(M), torch.tensor(y))
-
 
 def tinh_chinh(tr, te, nhan_lop, kieu_cat=None):
     """Tinh chỉnh PhoBERT rồi đánh giá trên tập kiểm thử."""
@@ -200,7 +188,6 @@ def tinh_chinh(tr, te, nhan_lop, kieu_cat=None):
             scaler.scale(loss).backward()
             tong_loss += ra.loss.item()
 
-            # Chỉ cập nhật trọng số sau mỗi gop_dao_ham batch
             dem_gop += 1
             if dem_gop >= P["gop_dao_ham"] or (buoc + 1) == len(dl_train):
                 dem_gop = 0
@@ -219,7 +206,6 @@ def tinh_chinh(tr, te, nhan_lop, kieu_cat=None):
 
         print("Xong epoch", epoch + 1, "| loss trung bình",
               round(tong_loss / len(dl_train), 4))
-        # Lưu điểm dừng sau mỗi epoch để nếu đứt phiên thì không mất trắng
         diem_dung = os.path.join(ch.THU_MUC_KET_QUA, "phobert_epoch_" + str(epoch + 1))
         mo_hinh.save_pretrained(diem_dung)
         tokenizer.save_pretrained(diem_dung)
@@ -229,7 +215,6 @@ def tinh_chinh(tr, te, nhan_lop, kieu_cat=None):
     giay = time.time() - t0
     print("Tinh chỉnh xong sau", round(giay / 60, 1), "phút")
 
-    # Đánh giá trên cùng tập kiểm thử với nhánh cổ điển
     mo_hinh.eval()
     gom = []
     with torch.no_grad():
@@ -241,8 +226,6 @@ def tinh_chinh(tr, te, nhan_lop, kieu_cat=None):
     y_doan = np.array([nhan_lop[i] for i in np.concatenate(gom)])
     y_that = te["chu_de"].tolist()
 
-    # Mỗi lần chạy lưu dưới khóa riêng (lan1, lan2 ...) vì PhoBERT không tất
-    # định, cần nhiều lần để tính trung bình
     ten = dg.khoa_lan_chay_moi("M4_PhoBERT_" + kieu_cat)
     kq = dg.do_ket_qua(ten, y_that, y_doan, giay)
     dg.luu_ket_qua(ten, kq)
