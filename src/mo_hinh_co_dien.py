@@ -6,14 +6,10 @@ import time
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import LinearSVC
-
 from . import cau_hinh as ch
 from . import danh_gia as dg
 
-
 def danh_sach_mo_hinh():
-    # M1 không đặt class_weight vì xác suất tiên nghiệm của Naive Bayes vốn đã
-    # phản ánh phân bố lớp, can thiệp sẽ phá vỡ ý nghĩa xác suất của mô hình
     return [
         ("M1_NaiveBayes", MultinomialNB(alpha=0.1)),
         ("M2_LogisticRegression", LogisticRegression(
@@ -41,17 +37,7 @@ def huan_luyen_va_danh_gia(X_train, y_train, X_test, y_test):
 
     return ket_qua, du_doan_luu, mo_hinh_luu
 
-
 def kiem_dinh_cheo(tr):
-    """Kiểm định chéo 5 lớp phân tầng, chạy trên TẬP HUẤN LUYỆN.
-
-    Mục đích là biết kết quả dao động bao nhiêu khi đổi tập huấn luyện, chứ
-    không phải làm accuracy chính xác hơn.
-
-    Vectorizer phải được fit lại ở TỪNG lớp gấp, nếu fit một lần bên ngoài vòng
-    lặp thì mỗi lớp gấp kiểm thử đều bị rò rỉ. Gói vào Pipeline để thư viện tự
-    quản lý thứ tự.
-    """
     from sklearn.model_selection import StratifiedKFold, cross_validate
     from sklearn.pipeline import Pipeline
 
@@ -59,8 +45,6 @@ def kiem_dinh_cheo(tr):
 
     skf = StratifiedKFold(n_splits=ch.SO_LOP_GAP, shuffle=True,
                           random_state=ch.HAT_GIONG)
-    # tolist() vì ArrowStringArray của pandas 3.x không hỗ trợ cách lấy phần tử
-    # bằng mảng chỉ số mà cross_validate dùng để chia lớp gấp
     X = tr["van_ban_tach_tu"].tolist()
     y = tr["chu_de"].tolist()
 
