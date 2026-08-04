@@ -8,8 +8,12 @@ THU_MUC_KET_QUA = os.path.join(THU_MUC_GOC, "ket_qua")
 THU_MUC_MO_HINH = os.path.join(THU_MUC_GOC, "models")
 THU_MUC_VNTC = os.path.join(THU_MUC_DU_LIEU, "vntc_ext")
 
-TEP_DA_TACH_TU = os.path.join(THU_MUC_DU_LIEU, "du_lieu_da_tach_tu.csv")
-TEP_THONG_KE = os.path.join(THU_MUC_KET_QUA, "thong_ke_du_lieu.json")
+def tep_da_tach_tu(mau_thu=False, so_mau_moi_lop=300):
+    if mau_thu:
+        ten = "du_lieu_da_tach_tu_mau_thu_" + str(so_mau_moi_lop) + ".csv"
+    else:
+        ten = "du_lieu_da_tach_tu_day_du.csv"
+    return os.path.join(THU_MUC_DU_LIEU, ten)TEP_THONG_KE = os.path.join(THU_MUC_KET_QUA, "thong_ke_du_lieu.json")
 TEP_KET_QUA = os.path.join(THU_MUC_KET_QUA, "ket_qua.json")
 TEP_MO_HINH = os.path.join(THU_MUC_MO_HINH, "mo_hinh_phan_loai.joblib")
 
