@@ -250,8 +250,8 @@ def chuan_bi_du_lieu(mau_thu=False, so_mau_moi_lop=300, bat_buoc_lam_lai=False):
     df = pd.DataFrame([{k: r[k] for k in
                         ["tap", "chu_de", "ten_tep", "toa_soan", "so_tu", "van_ban_tach_tu"]}
                        for r in ban_ghi])
-    df.to_csv(ch.TEP_DA_TACH_TU, index=False, encoding="utf-8")
-    ghi("Đã lưu " + ch.TEP_DA_TACH_TU)
+    df.to_csv(tep_cache, index=False, encoding="utf-8")
+    ghi("Đã lưu " + os.path.basename(tep_cache))
 
     with open(ch.TEP_THONG_KE, "w", encoding="utf-8") as f:
         json.dump(tk, f, ensure_ascii=False, indent=1)
