@@ -5,7 +5,7 @@ tiếng Việt, gồm ba mô hình cổ điển trên đặc trưng TF-IDF và m
 chỉnh PhoBERT, trong cùng một điều kiện thực nghiệm.
 
 
-Có ba cách chạy dự án, trình bày lần lượt ở ba mục dưới.
+Có hai cách chạy dự án, trình bày lần lượt ở ba mục dưới.
 
 ## 1. Cách một: chạy trực tiếp bằng Python
 
@@ -59,13 +59,7 @@ cd frontend
 python -m http.server 8080
 ```
 
-## 3. Cách ba: chạy bằng Docker
-
-```
-docker compose up --build
-```
-
-Sau khi khởi động xong, truy cập:
+Xong, truy cập:
 
 | Địa chỉ | Nội dung |
 |---|---|
