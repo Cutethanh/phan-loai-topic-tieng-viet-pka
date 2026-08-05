@@ -1,8 +1,4 @@
-"""Ba mô hình phân lớp cổ điển trên đặc trưng TF-IDF
-"""
-
 import time
-
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import LinearSVC
