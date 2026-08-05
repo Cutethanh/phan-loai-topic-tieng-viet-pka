@@ -14,7 +14,6 @@ from src.du_doan import BoPhanLoai
 
 ung_dung = FastAPI(
     title="Phân loại chủ đề bài viết tiếng Việt",
-    description="Báo cáo cuối kỳ môn Xử lý ngôn ngữ tự nhiên, lớp N01 nhóm 25",
     version="1.0",
 )
 ung_dung.add_middleware(
