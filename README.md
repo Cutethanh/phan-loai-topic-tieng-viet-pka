@@ -69,5 +69,5 @@ Sau khi khởi động xong, truy cập:
 
 | Địa chỉ | Nội dung |
 |---|---|
-| http://localhost:8080 |
+| http://localhost:8080 |web|
 
