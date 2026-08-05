@@ -103,7 +103,7 @@ def buoc_kiem_dinh(a):
 
 def buoc_phobert(a):
     from src import mo_hinh_phobert
-    print("LƯU Ý: mô đun PhoBERT chưa được chạy thử, xem chú thích đầu tệp")
+    print("LƯU Ý: mô đun PhoBERT mỗi lần chạy sẽ khác nhau")
     print("       src/mo_hinh_phobert.py")
     print()
     if not mo_hinh_phobert.kiem_tra_gpu():
