@@ -31,10 +31,15 @@ python chay.py --buoc phobert      tinh chinh PhoBERT, can GPU
 python chay.py --buoc du_doan      thu du doan tren vai van ban mau
 python chay.py --buoc tong_hop     in bang tong hop ket qua
 ```
+## 1.2. Về nhánh PhoBERT
+Trước khi chạy, cài thêm:
+```
+pip install torch transformers
+pip install --force-reinstall torch --index-url https://download.pytorch.org/whl/cu128
+python chay.py --buoc phobert 
+```
 
-Muốn chạy thử nhanh với một phần dữ liệu thì thêm `--mau_thu`. Bước `chuan_bi`
-lưu kết quả tách từ ra `data/du_lieu_da_tach_tu.csv`, các lần chạy sau tự đọc lại
-tệp này nên không phải tách từ lại. Muốn làm lại từ đầu thì thêm `--lam_lai`.
+Muốn chạy thử nhanh với một phần dữ liệu thì thêm `--mau_thu`.
 
 ## 2. Cách hai: chạy API và giao diện web thủ công
 
@@ -69,12 +74,3 @@ Sau khi khởi động xong, truy cập:
 | http://localhost:8000/health | Kiểm tra dịch vụ và mô hình |
 
 Dừng lại bằng tổ hợp phím Ctrl và C, hoặc bằng lệnh `docker compose down`.
-
-
-## 4. Về nhánh PhoBERT
-Trước khi chạy, cài thêm:
-
-```
-pip install torch transformers
-pip install --force-reinstall torch --index-url https://download.pytorch.org/whl/cu128
-```
