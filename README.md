@@ -69,8 +69,5 @@ Sau khi khởi động xong, truy cập:
 
 | Địa chỉ | Nội dung |
 |---|---|
-| http://localhost:8080 | Giao diện web |
-| http://localhost:8000/docs | Trang tài liệu API tương tác |
-| http://localhost:8000/health | Kiểm tra dịch vụ và mô hình |
+| http://localhost:8080 |
 
-Dừng lại bằng tổ hợp phím Ctrl và C, hoặc bằng lệnh `docker compose down`.
