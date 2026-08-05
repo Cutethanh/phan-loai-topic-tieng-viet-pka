@@ -1,6 +1,3 @@
-"""Nạp mô hình đã huấn luyện và dự đoán chủ đề cho văn bản mới
-"""
-
 import os
 import joblib
 import numpy as np
