@@ -1,6 +1,3 @@
-"""Tải dữ liệu, đọc tệp, khử trùng lặp và tách từ tiếng Việt
-"""
-
 import collections
 import hashlib
 import json
@@ -9,17 +6,13 @@ import re
 import subprocess
 import time
 import unicodedata
-
 import pandas as pd
-
 from . import cau_hinh as ch
 
 MAU_TEN_TEP = re.compile(r"^([A-Za-z]+)_\s*([A-Za-z]+)_")
 
-
 def ghi(msg):
     print("[" + time.strftime("%H:%M:%S") + "] " + str(msg), flush=True)
-
 
 # TẢI DỮ LIỆU
 def tai_du_lieu():
@@ -61,16 +54,13 @@ def giai_nen_rar(tep_rar, thu_muc_ra):
 
     raise RuntimeError
 
-
 # ĐỌC VÀ CHUẨN HÓA
 def doc_mot_tep(duong_dan):
-    """Đọc một tệp văn bản của VNTC và trả về chuỗi đã chuẩn hóa."""
     with open(duong_dan, "rb") as f:
         raw = f.read()
     van_ban = raw.decode("utf-16", errors="replace")
     van_ban = unicodedata.normalize("NFC", van_ban)
     return " ".join(van_ban.split())
-
 
 def tach_ma_toa_soan(ten_tep):
     m = MAU_TEN_TEP.match(ten_tep)
@@ -79,7 +69,6 @@ def tach_ma_toa_soan(ten_tep):
         if ma in ch.MA_TOA_SOAN:
             return ma
     return "KHAC"
-
 
 def quet_toan_bo():
     """Duyệt toàn bộ cây thư mục và đọc mọi tệp .txt."""
@@ -107,7 +96,6 @@ def quet_toan_bo():
                     "bam": hashlib.md5(vb.lower().encode("utf-8")).hexdigest(),
                 })
     return ban_ghi
-
 
 # KHỬ TRÙNG LẶP
 def khu_trung_lap(ban_ghi):
@@ -153,11 +141,9 @@ def khu_trung_lap(ban_ghi):
     }
     return con_lai, thong_ke
 
-
 # TÁCH TỪ
 
 _bo_tach_tu = None
-
 
 def _nap_bo_tach_tu():
     global _bo_tach_tu
@@ -173,7 +159,6 @@ def tien_xu_ly(van_ban):
     van_ban = " ".join(van_ban.split())
     return tok.tokenize(van_ban)
 
-
 def tach_tu_hang_loat(ban_ghi):
     tok = _nap_bo_tach_tu()
     tong = len(ban_ghi)
@@ -188,9 +173,7 @@ def tach_tu_hang_loat(ban_ghi):
     ghi("Tách từ xong sau " + str(round(time.time() - t0, 1)) + " giây")
     return ban_ghi
 
-
 # ĐIỀU PHỐI
-
 def chuan_bi_du_lieu(mau_thu=False, so_mau_moi_lop=300, bat_buoc_lam_lai=False):
     ch.bao_dam_thu_muc()
 
@@ -204,9 +187,7 @@ def chuan_bi_du_lieu(mau_thu=False, so_mau_moi_lop=300, bat_buoc_lam_lai=False):
         df = pd.read_csv(tep_cache).dropna(subset=["van_ban_tach_tu"])
         ghi("Có " + str(len(df)) + " văn bản")
         return df
-
     tai_du_lieu()
-
     ghi("Đọc toàn bộ tệp văn bản")
     t0 = time.time()
     ban_ghi = quet_toan_bo()
@@ -242,7 +223,6 @@ def chuan_bi_du_lieu(mau_thu=False, so_mau_moi_lop=300, bat_buoc_lam_lai=False):
         json.dump(tk, f, ensure_ascii=False, indent=1)
 
     return df
-
 
 def chia_tap(df):
     tr = df[df["tap"] == "train"].reset_index(drop=True)
