@@ -1,5 +1,3 @@
-// Dia chi cua dich vu API.
-// Khi chay bang docker-compose, frontend nam o cong 8080 con backend o cong 8000.
 const DIA_CHI_API = window.location.hostname
   ? "http://" + window.location.hostname + ":8000"
   : "http://127.0.0.1:8000";
