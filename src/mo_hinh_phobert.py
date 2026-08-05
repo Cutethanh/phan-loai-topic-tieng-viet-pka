@@ -56,7 +56,7 @@ def kiem_tra_gpu():
 
     if kha_nang[0] >= 12:
         print()
-        print("LƯU Ý: GPU này thuộc kiến trúc Blackwell (sm_120).")
+        print("LƯU Ý: GPU thuộc kiến trúc Blackwell (sm_120).")
         print("Nếu bước huấn luyện báo lỗi dạng no kernel image is available,")
         print("hãy cài lại PyTorch theo bản CUDA 12.8 trở lên.")
 
@@ -76,8 +76,6 @@ def kiem_tra_gpu():
     return True
 
 def do_token_con_tren_tu(tokenizer, tr, so_mau=2000):
-    """Đo số token con trung bình trên một từ, quyết định thực tế giữ lại được
-    bao nhiêu từ trong giới hạn 256 token con."""
     mau = tr["van_ban_tach_tu"].sample(n=min(so_mau, len(tr)),
                                        random_state=ch.HAT_GIONG)
     tong_tu = 0
