@@ -1,27 +1,9 @@
-"""
-Cách dùng:
-    python chay.py --buoc chuan_bi     Tải dữ liệu, khử trùng lặp, tách từ
-    python chay.py --buoc thong_ke     In bảng thống kê mô tả và vẽ biểu đồ
-    python chay.py --buoc co_dien      Huấn luyện và đánh giá ba mô hình cổ điển
-    python chay.py --buoc kiem_dinh    Kiểm định chéo 5 lớp
-    python chay.py --buoc phobert      Tinh chỉnh PhoBERT, cần GPU
-    python chay.py --buoc du_doan      Thử dự đoán trên vài văn bản mẫu
-    python chay.py --buoc tong_hop     In bảng tổng hợp kết quả
-    python chay.py --buoc tat_ca       Chạy toàn bộ nhánh cổ điển từ đầu tới cuối
-Tùy chọn thêm:
-    --mau_thu              Chỉ dùng 300 văn bản mỗi lớp, để chạy thử cho nhanh
-    --cat head_tail        Đổi cách cắt văn bản cho PhoBERT
-    --lam_lai              Bỏ qua tệp đã tách từ và làm lại từ đầu
-"""
-
 import argparse
 import os
 import sys
-
 from src import cau_hinh as ch
 from src import danh_gia as dg
 from src import dac_trung, du_doan, mo_hinh_co_dien, tien_xu_ly
-
 
 def buoc_chuan_bi(a):
     df = tien_xu_ly.chuan_bi_du_lieu(mau_thu=a.mau_thu, bat_buoc_lam_lai=a.lam_lai)
@@ -31,7 +13,6 @@ def buoc_chuan_bi(a):
     print("Tập kiểm thử  :", len(te), "văn bản")
     print("Số lớp        :", len(nhan_lop))
     return df
-
 
 def buoc_thong_ke(a):
     df = tien_xu_ly.chuan_bi_du_lieu(mau_thu=a.mau_thu, bat_buoc_lam_lai=a.lam_lai)
@@ -65,7 +46,6 @@ def buoc_thong_ke(a):
           round(tong.max() / tong.min(), 2), "lần")
     print("Vì lệch như vậy nên chỉ số chính của báo cáo là macro-F1, không phải accuracy.")
 
-
 def buoc_co_dien(a):
     df = tien_xu_ly.chuan_bi_du_lieu(mau_thu=a.mau_thu, bat_buoc_lam_lai=a.lam_lai)
     tr, te, nhan_lop = tien_xu_ly.chia_tap(df)
@@ -90,7 +70,6 @@ def buoc_co_dien(a):
     du_doan.luu_mo_hinh(vec, mo_hinh_luu["M2_LogisticRegression"])
     return y_test, du_doan_luu, nhan_lop
 
-
 def buoc_kiem_dinh(a):
     df = tien_xu_ly.chuan_bi_du_lieu(mau_thu=a.mau_thu, bat_buoc_lam_lai=a.lam_lai)
     tr, _, _ = tien_xu_ly.chia_tap(df)
@@ -99,7 +78,6 @@ def buoc_kiem_dinh(a):
     print("Phần này fit lại TF-IDF nhiều lần nên chạy lâu hơn bước co_dien.")
     print()
     mo_hinh_co_dien.kiem_dinh_cheo(tr)
-
 
 def buoc_phobert(a):
     from src import mo_hinh_phobert
@@ -115,14 +93,11 @@ def buoc_phobert(a):
     tr, te, nhan_lop = tien_xu_ly.chia_tap(df)
     mo_hinh_phobert.tinh_chinh(tr, te, nhan_lop, kieu_cat=a.cat)
 
-
 def buoc_du_doan(a):
     du_doan.thu_du_doan()
 
-
 def buoc_tong_hop(a):
     dg.in_bang_tong_hop()
-
 
 def main():
     p = argparse.ArgumentParser(
