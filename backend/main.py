@@ -1,7 +1,5 @@
-
 import os
 import sys
-# Cho phép import gói src khi chạy từ thư mục gốc hoặc từ trong container
 GOC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if GOC not in sys.path:
     sys.path.insert(0, GOC)
@@ -22,7 +20,6 @@ ung_dung.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 _bo_phan_loai = None
 def lay_bo_phan_loai():
     global _bo_phan_loai
