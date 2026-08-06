@@ -1,24 +1,18 @@
-"""Tinh chỉnh PhoBERT cho bài toán phân loại chủ đề
-"""
-
 import math
 import os
 import time
-
 import numpy as np
-
 from . import cau_hinh as ch
 from . import danh_gia as dg
-
 
 def kiem_tra_thu_vien():
     thieu = []
     try:
-        import torch  # noqa: F401
+        import torch
     except ImportError:
         thieu.append("torch")
     try:
-        import transformers  # noqa: F401
+        import transformers
     except ImportError:
         thieu.append("transformers")
     if thieu:
@@ -195,7 +189,6 @@ def tinh_chinh(tr, te, nhan_lop, kieu_cat=None):
                 scaler.update()
                 lich.step()
                 opt.zero_grad(set_to_none=True)
-
             if buoc + 1 >= moc_in:
                 print("   epoch", epoch + 1, "batch", buoc + 1, "/", len(dl_train),
                       "| loss trung bình", round(tong_loss / (buoc + 1), 4),
