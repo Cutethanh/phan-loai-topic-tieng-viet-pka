@@ -1,6 +1,3 @@
-"""Tính các chỉ số đánh giá và vẽ ma trận nhầm lẫn
-"""
-
 import json
 import math
 import os
@@ -9,9 +6,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import (accuracy_score, classification_report,
                              confusion_matrix, f1_score)
-
 from . import cau_hinh as ch
-
 
 def khoang_wilson(so_dung, tong, z=None):
     if z is None:
@@ -97,7 +92,6 @@ def ve_ma_tran_nham_lan(y_that, y_doan, nhan_lop, ten_mo_hinh, luu_hinh=True):
         print("   ", that, "_", doan, "_", so)
     print()
     return cm
-
 def ve_phan_bo_nhan(df):
     import matplotlib
     matplotlib.use("Agg")
@@ -128,8 +122,7 @@ def ve_phan_bo_nhan(df):
     plt.close(fig)
     print("Đã lưu", p)
     return bang
-
-
+  
 def luu_ket_qua(ten_mo_hinh, ket_qua, khoa="ket_qua_test"):
     tat_ca = {}
     if os.path.exists(ch.TEP_KET_QUA):
@@ -145,7 +138,6 @@ def khoa_lan_chay_moi(ten_goc, khoa="ket_qua_test"):
     while ten_goc + "_lan" + str(n) in tat_ca:
         n += 1
     return ten_goc + "_lan" + str(n)
-
 
 def gom_cac_lan_chay(kq):
     nhom = {}
