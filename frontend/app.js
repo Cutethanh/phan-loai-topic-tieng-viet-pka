@@ -18,8 +18,6 @@ const oKetQua = document.getElementById("ket-qua");
 const oLoi = document.getElementById("loi");
 const den = document.getElementById("den");
 const oTrangThai = document.getElementById("trang-thai");
-
-// Nap danh sach van ban mau vao o chon
 VAN_BAN_MAU.forEach((vb, i) => {
   const o = document.createElement("option");
   o.value = String(i);
