@@ -1,6 +1,3 @@
-"""Trích xuất đặc trưng bằng TF-IDF
-"""
-
 import math
 import time
 from sklearn.feature_extraction.text import TfidfVectorizer
