@@ -14,7 +14,6 @@ MAU_TEN_TEP = re.compile(r"^([A-Za-z]+)_\s*([A-Za-z]+)_")
 def ghi(msg):
     print("[" + time.strftime("%H:%M:%S") + "] " + str(msg), flush=True)
 
-# TẢI DỮ LIỆU
 def tai_du_lieu():
     ch.bao_dam_thu_muc()
     thu_muc_kho = os.path.join(ch.THU_MUC_DU_LIEU, "VNTC")
@@ -22,12 +21,10 @@ def tai_du_lieu():
     if os.path.exists(os.path.join(ch.THU_MUC_VNTC, "Train_Full")):
         ghi("Dữ liệu đã được giải nén sẵn, bỏ qua bước tải")
         return
-
     if not os.path.exists(thu_muc_kho):
         ghi("Đang tải kho ngữ liệu từ GitHub, khoảng 160 MB")
         subprocess.run(["git", "clone", "--depth", "1", "-q", ch.URL_KHO, thu_muc_kho],
                        check=True)
-
     os.makedirs(ch.THU_MUC_VNTC, exist_ok=True)
     for ten in ["Train_Full.rar", "Test_Full.rar"]:
         nguon = os.path.join(thu_muc_kho, "Data", "10Topics", "Ver1.1", ten)
@@ -35,11 +32,10 @@ def tai_du_lieu():
         giai_nen_rar(nguon, ch.THU_MUC_VNTC)
     ghi("Giải nén xong")
 
-
 def giai_nen_rar(tep_rar, thu_muc_ra):
     cac_lenh = [
-        ["unar", "-q", "-o", thu_muc_ra, tep_rar],   # Linux, macOS
-        ["tar", "-xf", tep_rar, "-C", thu_muc_ra],   # Windows 10
+        ["unar", "-q", "-o", thu_muc_ra, tep_rar],
+        ["tar", "-xf", tep_rar, "-C", thu_muc_ra],
         ["7z", "x", "-y", "-o" + thu_muc_ra, tep_rar],
         ["bsdtar", "-xf", tep_rar, "-C", thu_muc_ra],
     ]
@@ -51,10 +47,8 @@ def giai_nen_rar(tep_rar, thu_muc_ra):
         if kq.returncode == 0:
             ghi("   giải nén bằng " + lenh[0])
             return True
-
     raise RuntimeError
 
-# ĐỌC VÀ CHUẨN HÓA
 def doc_mot_tep(duong_dan):
     with open(duong_dan, "rb") as f:
         raw = f.read()
@@ -71,7 +65,6 @@ def tach_ma_toa_soan(ten_tep):
     return "KHAC"
 
 def quet_toan_bo():
-    """Duyệt toàn bộ cây thư mục và đọc mọi tệp .txt."""
     ban_ghi = []
     for tap in ["Train_Full", "Test_Full"]:
         goc = os.path.join(ch.THU_MUC_VNTC, tap)
@@ -97,13 +90,11 @@ def quet_toan_bo():
                 })
     return ban_ghi
 
-# KHỬ TRÙNG LẶP
 def khu_trung_lap(ban_ghi):
     
     nhom = collections.defaultdict(list)
     for i, r in enumerate(ban_ghi):
         nhom[r["bam"]].append(i)
-
     bo_di = set()
     so_nhom_mau_thuan = 0
     so_tep_mau_thuan = 0
@@ -141,8 +132,6 @@ def khu_trung_lap(ban_ghi):
     }
     return con_lai, thong_ke
 
-# TÁCH TỪ
-
 _bo_tach_tu = None
 
 def _nap_bo_tach_tu():
@@ -152,13 +141,12 @@ def _nap_bo_tach_tu():
         _bo_tach_tu = ViTokenizer
     return _bo_tach_tu
 
-
 def tien_xu_ly(van_ban):
     tok = _nap_bo_tach_tu()
     van_ban = unicodedata.normalize("NFC", van_ban)
     van_ban = " ".join(van_ban.split())
     return tok.tokenize(van_ban)
-
+    
 def tach_tu_hang_loat(ban_ghi):
     tok = _nap_bo_tach_tu()
     tong = len(ban_ghi)
@@ -173,15 +161,12 @@ def tach_tu_hang_loat(ban_ghi):
     ghi("Tách từ xong sau " + str(round(time.time() - t0, 1)) + " giây")
     return ban_ghi
 
-# ĐIỀU PHỐI
 def chuan_bi_du_lieu(mau_thu=False, so_mau_moi_lop=300, bat_buoc_lam_lai=False):
     ch.bao_dam_thu_muc()
-
     tep_cache = ch.tep_da_tach_tu(mau_thu, so_mau_moi_lop)
     che_do = ("CHẠY THỬ, " + str(so_mau_moi_lop) + " văn bản mỗi lớp mỗi tập"
               if mau_thu else "ĐẦY ĐỦ, toàn bộ dữ liệu")
     ghi("Chế độ: " + che_do)
-
     if os.path.exists(tep_cache) and not bat_buoc_lam_lai:
         ghi("Đọc lại dữ liệu đã tách từ từ " + os.path.basename(tep_cache))
         df = pd.read_csv(tep_cache).dropna(subset=["van_ban_tach_tu"])
@@ -193,12 +178,10 @@ def chuan_bi_du_lieu(mau_thu=False, so_mau_moi_lop=300, bat_buoc_lam_lai=False):
     ban_ghi = quet_toan_bo()
     ghi("Đọc xong " + str(len(ban_ghi)) + " văn bản trong "
         + str(round(time.time() - t0, 1)) + " giây")
-
     ghi("Khử trùng lặp")
     ban_ghi, tk = khu_trung_lap(ban_ghi)
     for k, v in tk.items():
         ghi("   " + k + " = " + str(v))
-
     if mau_thu:
         dem = collections.Counter()
         loc = []
@@ -209,21 +192,17 @@ def chuan_bi_du_lieu(mau_thu=False, so_mau_moi_lop=300, bat_buoc_lam_lai=False):
                 loc.append(r)
         ban_ghi = loc
         ghi("CHẾ ĐỘ CHẠY THỬ: chỉ giữ " + str(len(ban_ghi)) + " văn bản")
-
     ghi("Tách từ tiếng Việt bằng pyvi, đây là bước lâu nhất")
     ban_ghi = tach_tu_hang_loat(ban_ghi)
-
     df = pd.DataFrame([{k: r[k] for k in
                         ["tap", "chu_de", "ten_tep", "toa_soan", "so_tu", "van_ban_tach_tu"]}
                        for r in ban_ghi])
     df.to_csv(tep_cache, index=False, encoding="utf-8")
     ghi("Đã lưu " + os.path.basename(tep_cache))
-
     with open(ch.TEP_THONG_KE, "w", encoding="utf-8") as f:
         json.dump(tk, f, ensure_ascii=False, indent=1)
-
     return df
-
+    
 def chia_tap(df):
     tr = df[df["tap"] == "train"].reset_index(drop=True)
     te = df[df["tap"] == "test"].reset_index(drop=True)
