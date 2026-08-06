@@ -1,6 +1,5 @@
 import os
 
-#ĐƯỜNG DẪN
 THU_MUC_GOC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 THU_MUC_DU_LIEU = os.path.join(THU_MUC_GOC, "data")
 THU_MUC_KET_QUA = os.path.join(THU_MUC_GOC, "ket_qua")
@@ -20,7 +19,6 @@ TEP_MO_HINH = os.path.join(THU_MUC_MO_HINH, "mo_hinh_phan_loai.joblib")
 URL_KHO = "https://github.com/duyvuleo/VNTC.git"
 HAT_GIONG = 42
 
-#NHÃN LỚP
 TEN_HIEN_THI = {
     "Chinh tri Xa hoi": "Chính trị Xã hội",
     "Doi song": "Đời sống",
@@ -39,7 +37,6 @@ MA_TOA_SOAN = {
     "TN": "Thanh Niên",
     "NLD": "Người Lao Động",
 }
-# THAM SỐ MÔ HÌNH
 THAM_SO_TFIDF = {
     "ngram_range": (1, 2),    
     "min_df": 3,              
@@ -57,12 +54,10 @@ PHOBERT = {
     "weight_decay": 0.01,
     "ty_le_warmup": 0.1,
     "cat_dao_ham": 1.0,
-    "kieu_cat": "head",       # head lấy phần đầu, head_tail lấy đầu cộng cuối
+    "kieu_cat": "head",
 }
-
 SO_LOP_GAP = 5          
 MUC_TIN_CAY = 1.96      
-
 def bao_dam_thu_muc():
     for d in [THU_MUC_DU_LIEU, THU_MUC_KET_QUA, THU_MUC_MO_HINH]:
         os.makedirs(d, exist_ok=True)
