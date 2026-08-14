@@ -28,7 +28,6 @@ def kiem_tra_thu_vien():
     return True
 
 def kiem_tra_gpu():
-    """Kiểm tra môi trường GPU và cảnh báo các vấn đề đã biết."""
     if not kiem_tra_thu_vien():
         return False
     import torch
