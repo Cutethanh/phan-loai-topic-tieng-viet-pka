@@ -15,7 +15,6 @@ def danh_sach_mo_hinh():
 
 
 def huan_luyen_va_danh_gia(X_train, y_train, X_test, y_test):
-    """Huấn luyện cả ba mô hình rồi đo trên tập kiểm thử."""
     ket_qua = {}
     du_doan_luu = {}
     mo_hinh_luu = {}
