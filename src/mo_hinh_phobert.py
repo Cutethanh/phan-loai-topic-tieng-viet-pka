@@ -118,7 +118,6 @@ def ma_hoa(khung, tokenizer, nhan_to_so, kieu):
     return TensorDataset(torch.tensor(X), torch.tensor(M), torch.tensor(y))
 
 def tinh_chinh(tr, te, nhan_lop, kieu_cat=None):
-    """Tinh chỉnh PhoBERT rồi đánh giá trên tập kiểm thử."""
     import torch
     from torch.utils.data import DataLoader
     from transformers import (AutoModelForSequenceClassification, AutoTokenizer,
