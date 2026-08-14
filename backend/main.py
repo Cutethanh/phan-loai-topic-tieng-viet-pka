@@ -41,7 +41,6 @@ def goc():
 
 @ung_dung.get("/health")
 def kiem_tra_suc_khoe():
-    """Kiểm tra dịch vụ còn sống và mô hình đã nạp được chưa."""
     try:
         bpl = lay_bo_phan_loai()
         return {"trang_thai": "san_sang", "so_lop": len(bpl.nhan_lop),
@@ -51,7 +50,6 @@ def kiem_tra_suc_khoe():
 
 @ung_dung.post("/predict")
 def du_doan_mot(yc: YeuCauMot):
-    """Dự đoán chủ đề cho một văn bản."""
     if not yc.van_ban.strip():
         raise HTTPException(status_code=400, detail="Văn bản rỗng")
     try:
