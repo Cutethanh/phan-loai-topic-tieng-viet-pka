@@ -4,11 +4,7 @@ Xây dựng và đối chứng bốn mô hình phân loại chủ đề cho văn
 tiếng Việt, gồm ba mô hình cổ điển trên đặc trưng TF-IDF và một mô hình tinh
 chỉnh PhoBERT, trong cùng một điều kiện thực nghiệm.
 
-
-Có hai cách chạy dự án, trình bày lần lượt ở ba mục dưới.
-
-## 1. Cách một: chạy trực tiếp bằng Python
-
+## 1. Chạy trực tiếp bằng Python
 
 ```
 pip install -r requirements.txt
