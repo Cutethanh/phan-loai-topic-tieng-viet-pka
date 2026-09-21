@@ -31,37 +31,4 @@ python chay.py --buoc phobert      tinh chinh PhoBERT, can GPU
 python chay.py --buoc du_doan      thu du doan tren vai van ban mau
 python chay.py --buoc tong_hop     in bang tong hop ket qua
 ```
-## 1.2. Về nhánh PhoBERT
-Trước khi chạy, cài thêm:
-```
-pip install torch transformers
-pip install --force-reinstall torch --index-url https://download.pytorch.org/whl/cu128
-python chay.py --buoc phobert 
-```
-
-Muốn chạy thử nhanh với một phần dữ liệu thì thêm `--mau_thu`.
-
-## 2. Cách hai: chạy API và giao diện web thủ công
-
-Phải chạy `python chay.py --buoc co_dien` trước để sinh ra tệp mô hình trong thư
-mục `models/`.
-
-Mở cửa sổ dòng lệnh thứ nhất, chạy backend:
-
-```
-uvicorn backend.main:ung_dung --reload --port 8000
-```
-
-Mở cửa sổ thứ hai, chạy một máy chủ tệp tĩnh cho frontend:
-
-```
-cd frontend
-python -m http.server 8080
-```
-
-Xong, truy cập:
-
-| Địa chỉ | Nội dung |
-|---|---|
-| http://localhost:8080 |web|
 
